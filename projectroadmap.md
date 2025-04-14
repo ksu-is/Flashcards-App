@@ -5,6 +5,7 @@ Sprint 1 To Do List
 - [ ] edit readme.md
 - [x] create title DONE
 - [x] Create Description DONE
+
 Sprint 2 To Do List
 - [x] Upload code, check for problems DONE
 - [ ] analyze code in VS studio
