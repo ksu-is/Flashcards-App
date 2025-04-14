@@ -9,6 +9,6 @@ Sprint 1 To Do List
 Sprint 2 To Do List
 - [x] Upload code, check for problems DONE
 - [ ] analyze code in VS studio
-- [ ] work through code
-- [ ] change color and text for flashcards
+- [ ] change color of background
+- [ ] change font of flashcards
 - [ ] note changes from original code
