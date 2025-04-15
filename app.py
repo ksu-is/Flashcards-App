@@ -9,8 +9,11 @@ FLASHCARD_FILE = 'flashcards.json'
 def load_flashcards():
     if os.path.exists(FLASHCARD_FILE):
         with open(FLASHCARD_FILE, 'r') as f:
-            return json.load(f)
-    return {}
+            try:
+                return json.load(f)
+            except json.JSONDecodeError:
+                return []
+    return []
 
 def save_flashcards(data):
     with open(FLASHCARD_FILE, 'w') as f:
@@ -27,7 +30,7 @@ def add():
         question = request.form['question']
         answer = request.form['answer']
         flashcards = load_flashcards()
-        flashcards[question] = answer
+        flashcards.append({'question': question, 'answer': answer})
         save_flashcards(flashcards)
         return redirect(url_for('index'))
     return render_template('add.html')
@@ -36,8 +39,8 @@ def add():
 def quiz():
     flashcards = load_flashcards()
     if flashcards:
-        question = random.choice(list(flashcards.keys()))
-        return render_template('quiz.html', question=question, answer=flashcards[question])
+        card = random.choice(flashcards)
+        return render_template('quiz.html', card=card)
     return "<h2>No flashcards available. <a href='/add'>Add some</a></h2>"
 
 @app.route('/delete/<int:card_index>', methods=['POST'])
