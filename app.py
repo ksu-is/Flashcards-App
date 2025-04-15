@@ -46,6 +46,7 @@ def quiz():
 @app.route('/delete/<int:card_index>', methods=['POST'])
 def delete(card_index):
     flashcards = load_flashcards()
+    print("flashcards type:", type(flashcards))  
     if 0 <= card_index < len(flashcards):
         del flashcards[card_index]
         save_flashcards(flashcards)
