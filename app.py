@@ -40,5 +40,13 @@ def quiz():
         return render_template('quiz.html', question=question, answer=flashcards[question])
     return "<h2>No flashcards available. <a href='/add'>Add some</a></h2>"
 
+@app.route('/delete/<int:card_index>', methods=['POST'])
+def delete(card_index):
+    flashcards = load_flashcards()
+    if 0 <= card_index < len(flashcards):
+        del flashcards[card_index]
+        save_flashcards(flashcards)
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
