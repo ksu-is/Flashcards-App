@@ -14,3 +14,21 @@
     {% block content %}{% endblock %}
 </body>
 </html>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flashcard App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>🧠 Flashcard App</h1>
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a> |
+        <a href="{{ url_for('add') }}">Add Flashcard</a> |
+        <a href="{{ url_for('quiz') }}">Quiz Me</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
