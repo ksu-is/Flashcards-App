@@ -10,7 +10,11 @@ def load_flashcards():
     if os.path.exists(FLASHCARD_FILE):
         with open(FLASHCARD_FILE, 'r') as f:
             try:
-                return json.load(f)
+                data = json.load(f)
+                # 🔁 If data is in old dictionary format, convert to list
+                if isinstance(data, dict):
+                    return [{"question": q, "answer": a} for q, a in data.items()]
+                return data
             except json.JSONDecodeError:
                 return []
     return []
@@ -30,6 +34,9 @@ def add():
         question = request.form['question']
         answer = request.form['answer']
         flashcards = load_flashcards()
+        # 🔁 If old format, convert to list first
+        if isinstance(flashcards, dict):
+            flashcards = [{"question": q, "answer": a} for q, a in flashcards.items()]
         flashcards.append({'question': question, 'answer': answer})
         save_flashcards(flashcards)
         return redirect(url_for('index'))
@@ -46,7 +53,9 @@ def quiz():
 @app.route('/delete/<int:card_index>', methods=['POST'])
 def delete(card_index):
     flashcards = load_flashcards()
-    print("flashcards type:", type(flashcards))  
+    # 🔁 Fix if data was saved in old dict format
+    if isinstance(flashcards, dict):
+        flashcards = [{"question": q, "answer": a} for q, a in flashcards.items()]
     if 0 <= card_index < len(flashcards):
         del flashcards[card_index]
         save_flashcards(flashcards)
