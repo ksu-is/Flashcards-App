@@ -1,4 +1,6 @@
 cd %USERPROFILE%\Desktop\Flashcards-App
 python app.py 
 
-^ run this code on terminal or command prompt from wherever your app.py is located
+^ run this code on terminal or command prompt 
+
+NOTE: my cd %USERPROFILE%\Desktop\Flashcards-App will be different from yours. Find where your Flashcards-App folder and app.py is located in your file explorer and use that. 
