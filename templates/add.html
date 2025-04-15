@@ -1,1 +1,12 @@
+{% extends 'base.html' %}
 
+{% block content %}
+<h2>Add New Flashcard</h2>
+<form method="POST">
+    <label>Question:</label><br>
+    <input type="text" name="question" required><br><br>
+    <label>Answer:</label><br>
+    <input type="text" name="answer" required><br><br>
+    <button type="submit">Add</button>
+</form>
+{% endblock %}
