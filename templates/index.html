@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <h2>All Flashcards</h2>
 <ul>
-    {% for question, answer in flashcards.items() %}
-        <li><strong>{{ question }}</strong>: {{ answer }}</li>
-    {% endfor %}
+  {% for flashcard in flashcards %}
+    <li>
+      <strong>Q:</strong> {{ flashcard.question }}<br>
+      <strong>A:</strong> {{ flashcard.answer }}
+      <!-- Delete Button -->
+      <form action="{{ url_for('delete', card_index=loop.index0) }}" method="post" style="display:inline;">
+        <button type="submit" onclick="return confirm('Delete this flashcard?');">🗑️ Delete</button>
+      </form>
+    </li>
+  {% endfor %}
 </ul>
 {% endblock %}
