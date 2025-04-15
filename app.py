@@ -50,17 +50,6 @@ def quiz():
         return render_template('quiz.html', card=card)
     return "<h2>No flashcards available. <a href='/add'>Add some</a></h2>"
 
-@app.route('/delete/<int:card_index>', methods=['POST'])
-def delete(card_index):
-    flashcards = load_flashcards()
-    # 🔁 Fix if data was saved in old dict format
-    if isinstance(flashcards, dict):
-        flashcards = [{"question": q, "answer": a} for q, a in flashcards.items()]
-    if 0 <= card_index < len(flashcards):
-        del flashcards[card_index]
-        save_flashcards(flashcards)
-    return redirect(url_for('index'))
-
 if __name__ == '__main__':
     app.run(debug=True)
 
