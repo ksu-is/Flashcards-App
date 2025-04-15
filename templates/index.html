@@ -1,16 +1,28 @@
-{% extends 'base.html' %}
-{% block content %}
-<h2>All Flashcards</h2>
-<ul>
-  {% for flashcard in flashcards %}
-    <li>
-      <strong>Q:</strong> {{ flashcard.question }}<br>
-      <strong>A:</strong> {{ flashcard.answer }}
-      <!-- Delete Button -->
-      <form action="{{ url_for('delete', card_index=loop.index0) }}" method="post" style="display:inline;">
-        <button type="submit" onclick="return confirm('Delete this flashcard?');">🗑️ Delete</button>
-      </form>
-    </li>
-  {% endfor %}
-</ul>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Flashcards</h1>
+
+    <div class="center">
+        <a href="{{ url_for('add') }}">➕ Add New Flashcard</a> |
+        <a href="{{ url_for('quiz') }}">🧠 Take a Quiz</a>
+    </div>
+
+    <h2>Flashcards:</h2>
+    <ul>
+        {% for flashcard in flashcards %}
+            <li>
+                <strong>{{ flashcard['question'] }}</strong>: {{ flashcard['answer'] }}
+            </li>
+        {% else %}
+            <p>No flashcards available.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
