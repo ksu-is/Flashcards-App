@@ -12,3 +12,6 @@ Sprint 2 To Do List
 - [x] change color of texts DONE
 - [x] change font of flashcards DONE
 - [x] note changes from original code DONE
+
+Sprint 3 To Do List
+- 
