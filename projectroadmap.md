@@ -14,4 +14,7 @@ Sprint 2 To Do List
 - [x] note changes from original code DONE
 
 Sprint 3 To Do List
-- 
+- [] check why Quiz question: and answer: is blank
+- [] add delete button
+- [] check and see if undo button could work
+- [] add more smaller features and color 
