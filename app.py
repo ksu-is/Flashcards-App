@@ -47,7 +47,6 @@ def quiz():
     flashcards = load_flashcards()
     if flashcards:
         card = random.choice(flashcards)
-        print(f"Card loaded: {card}")  # Add this line to debug
         return render_template('quiz.html', card=card)
     return "<h2>No flashcards available. <a href='/add'>Add some</a></h2>"
 
