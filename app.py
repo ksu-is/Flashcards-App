@@ -11,6 +11,7 @@ def load_flashcards():
         with open(FLASHCARD_FILE, 'r') as f:
             try:
                 data = json.load(f)
+                print("Loaded flashcards:", data)  # Debug print
                 # 🔁 If data is in old dictionary format, convert to list
                 if isinstance(data, dict):
                     return [{"question": q, "answer": a} for q, a in data.items()]
@@ -47,9 +48,9 @@ def quiz():
     flashcards = load_flashcards()
     if flashcards:
         card = random.choice(flashcards)
+        print("Selected card:", card)  # Debug print
         return render_template('quiz.html', card=card)
     return "<h2>No flashcards available. <a href='/add'>Add some</a></h2>"
 
 if __name__ == '__main__':
     app.run(debug=True)
-
