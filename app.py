@@ -46,6 +46,7 @@ def add():
 @app.route('/quiz')
 def quiz():
     flashcards = load_flashcards()
+    print("Flashcards in quiz route:", flashcards)  # Debug print
     if flashcards:
         card = random.choice(flashcards)
         print("Selected card:", card)  # Debug print
@@ -54,4 +55,3 @@ def quiz():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
