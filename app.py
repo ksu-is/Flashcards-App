@@ -12,12 +12,13 @@ def load_flashcards():
             try:
                 data = json.load(f)
                 print("Loaded flashcards:", data)  # Debug print
-                # 🔁 If data is in old dictionary format, convert to list
                 if isinstance(data, dict):
                     return [{"question": q, "answer": a} for q, a in data.items()]
                 return data
             except json.JSONDecodeError:
+                print("Error loading JSON data")  # Debug print
                 return []
+    print("Flashcard file not found")  # Debug print
     return []
 
 def save_flashcards(data):
@@ -35,7 +36,6 @@ def add():
         question = request.form['question']
         answer = request.form['answer']
         flashcards = load_flashcards()
-        # 🔁 If old format, convert to list first
         if isinstance(flashcards, dict):
             flashcards = [{"question": q, "answer": a} for q, a in flashcards.items()]
         flashcards.append({'question': question, 'answer': answer})
@@ -54,3 +54,4 @@ def quiz():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
